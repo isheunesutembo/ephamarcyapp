@@ -120,10 +120,7 @@ class _SignInState extends ConsumerState<SignIn> {
                         
                         signInWithEmailAndPassword(context,ref,
                             email.trim(), password.trim());
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(builder: (context) => Home()),
-                            (route) => false);
+                      
                       },
                       child: Text("Sign In")),
                 ),
@@ -135,17 +132,12 @@ class _SignInState extends ConsumerState<SignIn> {
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Register(),
-                        ),
-                        (route) => false);
+                    Navigator.push(context,MaterialPageRoute(builder: (context)=>Register()));
                   },
-                  child: Center(
+                  child:const Center(
                       child: Text(
                           "You have no account ? Click here to register",
-                          style: const TextStyle(
+                          style:  TextStyle(
                               color: Colors.black,
                               fontSize: 25,
                               fontWeight: FontWeight.bold))),

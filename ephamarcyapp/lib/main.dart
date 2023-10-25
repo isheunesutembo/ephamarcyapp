@@ -44,7 +44,7 @@ class MyApp extends ConsumerWidget {
                 }
                 return loggedOutRoute;
               }),
-              routeInformationParser: RoutemasterParser(),
+              routeInformationParser:const RoutemasterParser(),
             ),
         error: (error, stackTrace) => ErrorText(error: error.toString()),
         loading: () =>const Loader());

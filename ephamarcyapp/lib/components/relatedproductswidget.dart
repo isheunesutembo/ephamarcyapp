@@ -1,34 +1,27 @@
+
+import 'package:ephamarcyapp/components/errorwidget.dart';
+import 'package:ephamarcyapp/components/loader.dart';
+import 'package:ephamarcyapp/controllers/productcontroller.dart';
 import 'package:ephamarcyapp/pages/productdetailspage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../components/errorwidget.dart';
-import '../components/loader.dart';
-import '../controllers/productcontroller.dart';
-
-class ProductsByCategoryPage extends ConsumerWidget {
+class RelatedProductsWidget extends ConsumerWidget {
   String categoryname;
-   ProductsByCategoryPage({required this.categoryname,super.key});
+   RelatedProductsWidget({required this.categoryname,super.key});
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    final products=ref.watch(getProductsByCategoryProvider(categoryname));
-    return Scaffold(appBar: AppBar(elevation: 0,backgroundColor: Colors.white,
-    iconTheme: Theme.of(context).iconTheme,),
-    body: products.when(data: (data){
-      return 
-      data.isNotEmpty?
-      GridView.builder(
-      gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 2/3,
-      ),
-      itemCount: data.length,
-      shrinkWrap: true,
-      physics:const ClampingScrollPhysics(),
-      scrollDirection: Axis.vertical,
-      itemBuilder: (context,index){
-        return Padding(padding:const EdgeInsets.all(2),
+    final relatedProducts=ref.watch(getRelatedProductsProvider(categoryname));
+    return relatedProducts.when(data: (data){
+      return Container(
+        height:300,
+        child:ListView.builder(shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: data.length,
+        physics:ClampingScrollPhysics(),
+        itemBuilder: (context,index){
+         return Padding(padding:const EdgeInsets.all(2),
         child:GestureDetector(
           onTap:(){
             Navigator.push(context,MaterialPageRoute(builder: (context)=>ProductDetailsPage(),
@@ -77,9 +70,9 @@ class ProductsByCategoryPage extends ConsumerWidget {
         )
             ) ,),
         ));
-      },
-    ):const Center(child:Text("No products in this category",style: TextStyle(fontSize: 15,fontWeight: FontWeight.w500),));
+        },)
+      );
 
-    }, error: (error,stackTrace)=>ErrorText(error: error.toString(),), loading:()=>const Loader()) );
+    }, error:(error,stackTrace)=>ErrorText(error:error.toString()), loading: ()=>Loader());
   }
 }

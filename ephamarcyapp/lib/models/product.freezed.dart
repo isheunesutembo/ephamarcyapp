@@ -27,6 +27,7 @@ mixin _$Product {
   double? get oldPrice => throw _privateConstructorUsedError;
   double? get price => throw _privateConstructorUsedError;
   String? get productId => throw _privateConstructorUsedError;
+  String? get categoryname => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,7 +46,8 @@ abstract class $ProductCopyWith<$Res> {
       String? description,
       double? oldPrice,
       double? price,
-      String? productId});
+      String? productId,
+      String? categoryname});
 }
 
 /// @nodoc
@@ -68,6 +70,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? oldPrice = freezed,
     Object? price = freezed,
     Object? productId = freezed,
+    Object? categoryname = freezed,
   }) {
     return _then(_value.copyWith(
       name: freezed == name
@@ -98,6 +101,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
               as String?,
+      categoryname: freezed == categoryname
+          ? _value.categoryname
+          : categoryname // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -116,7 +123,8 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String? description,
       double? oldPrice,
       double? price,
-      String? productId});
+      String? productId,
+      String? categoryname});
 }
 
 /// @nodoc
@@ -136,6 +144,7 @@ class __$$_ProductCopyWithImpl<$Res>
     Object? oldPrice = freezed,
     Object? price = freezed,
     Object? productId = freezed,
+    Object? categoryname = freezed,
   }) {
     return _then(_$_Product(
       name: freezed == name
@@ -166,6 +175,10 @@ class __$$_ProductCopyWithImpl<$Res>
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
               as String?,
+      categoryname: freezed == categoryname
+          ? _value.categoryname
+          : categoryname // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -180,7 +193,8 @@ class _$_Product implements _Product {
       this.description,
       this.oldPrice,
       this.price,
-      this.productId});
+      this.productId,
+      this.categoryname});
 
   factory _$_Product.fromJson(Map<String, dynamic> json) =>
       _$$_ProductFromJson(json);
@@ -199,10 +213,12 @@ class _$_Product implements _Product {
   final double? price;
   @override
   final String? productId;
+  @override
+  final String? categoryname;
 
   @override
   String toString() {
-    return 'Product(name: $name, image: $image, isAvailable: $isAvailable, description: $description, oldPrice: $oldPrice, price: $price, productId: $productId)';
+    return 'Product(name: $name, image: $image, isAvailable: $isAvailable, description: $description, oldPrice: $oldPrice, price: $price, productId: $productId, categoryname: $categoryname)';
   }
 
   @override
@@ -220,13 +236,15 @@ class _$_Product implements _Product {
                 other.oldPrice == oldPrice) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.productId, productId) ||
-                other.productId == productId));
+                other.productId == productId) &&
+            (identical(other.categoryname, categoryname) ||
+                other.categoryname == categoryname));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, image, isAvailable,
-      description, oldPrice, price, productId);
+      description, oldPrice, price, productId, categoryname);
 
   @JsonKey(ignore: true)
   @override
@@ -250,7 +268,8 @@ abstract class _Product implements Product {
       final String? description,
       final double? oldPrice,
       final double? price,
-      final String? productId}) = _$_Product;
+      final String? productId,
+      final String? categoryname}) = _$_Product;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$_Product.fromJson;
 
@@ -268,6 +287,8 @@ abstract class _Product implements Product {
   double? get price;
   @override
   String? get productId;
+  @override
+  String? get categoryname;
   @override
   @JsonKey(ignore: true)
   _$$_ProductCopyWith<_$_Product> get copyWith =>
